@@ -24,6 +24,7 @@
     click_on('Submit')
     expect(page).not_to have_content("Please choose your mass destruction weapon")
     expect(page).to have_content("Please enter your name")
+    # Trying to make the test pass with a stub or various expressions but to no avail yet
   end
 
   Then(/^I should be successfully registered$/) do

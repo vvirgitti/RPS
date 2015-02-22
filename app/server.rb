@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require './lib/player'
 
 class RPS < Sinatra::Base
 
@@ -19,13 +20,35 @@ class RPS < Sinatra::Base
       puts params.inspect
       erb :register
     else
+      player = Player.new(params[:name])
       @welcome = "Welcome #{params[:name]}"
       erb :choose
     end
   end
 
-  get '/choose/' do
+  get '/choose' do
     erb :choose
+  end
+
+  get '/rock' do
+    erb :rock
+  end
+
+  get '/paper' do
+    erb :paper
+  end
+
+  get '/scissors' do
+    erb :scissors
+  end
+
+  get '/opponent' do
+    @weapon = %w(Rock Paper Scissors).sample
+    erb :opponent
+  end
+
+  get '/result' do
+    erb :result
   end
 
   # start the server if ruby file executed directly
