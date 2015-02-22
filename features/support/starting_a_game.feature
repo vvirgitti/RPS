@@ -4,14 +4,14 @@ Feature: Starting a game
   I want to start a new game
 
 
-  Scenario: Registering
+  Scenario: Getting to the registration form
     Given I am on the homepage
     When I follow "New Game"
     Then I should see "What's your name?"
 
-  Scenario: no name
+  Scenario: Registration process
     Given I am on the register page
-    When I don't enter my name
-    Then I see "Please enter your name"
+    When I enter my name
+    Then I should be successfully registered
 
 

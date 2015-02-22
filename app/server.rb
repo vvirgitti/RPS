@@ -15,10 +15,12 @@ class RPS < Sinatra::Base
   post '/register' do
     if params[:name].empty?
       @message = "Please enter your name"
+      puts "*********"
+      puts params.inspect
       erb :register
     else
       @welcome = "Welcome #{params[:name]}"
-    erb :choose
+      erb :choose
     end
   end
 
