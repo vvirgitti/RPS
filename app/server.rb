@@ -1,5 +1,7 @@
 require 'sinatra/base'
 require './lib/player'
+require './lib/computer'
+require './lib/game'
 
 class RPS < Sinatra::Base
 
@@ -16,8 +18,6 @@ class RPS < Sinatra::Base
   post '/register' do
     if params[:name].empty?
       @message = "Please enter your name"
-      puts "*********"
-      puts params.inspect
       erb :register
     else
       player = Player.new(params[:name])
@@ -27,6 +27,7 @@ class RPS < Sinatra::Base
   end
 
   get '/choose' do
+    game = Game.new
     erb :choose
   end
 
@@ -43,11 +44,19 @@ class RPS < Sinatra::Base
   end
 
   get '/opponent' do
+    computer = Computer.new
     @weapon = %w(Rock Paper Scissors).sample
     erb :opponent
   end
 
   get '/result' do
+    if erb == :rock
+      @choice = 'Rock'
+    elsif erb == :paper
+      @choice = 'Paper'
+    else
+      @choice = 'Scissors'
+    end
     erb :result
   end
 

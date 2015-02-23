@@ -19,7 +19,7 @@
     visit ('/register')
   end
 
-  When(/^I enter my name$/) do
+  When(/^I type in my name$/) do
     fill_in('name', :with => 'Joe')
     click_on('Submit')
     expect(page).not_to have_content("Please choose your mass destruction weapon")
@@ -30,3 +30,41 @@
   Then(/^I should be successfully registered$/) do
     visit ('/choose')
   end
+
+
+#Scenario Choose a weapon
+
+  Given(/^I am on the game page$/) do
+  visit ('/choose')
+end
+
+When(/^I click on a link$/) do
+  click_on('Rock' || 'Paper' || 'Scissors')
+end
+
+Then(/^I should see the text "(.*?)"$/) do |weapon|
+    expect(page).to have_content("You have chosen")
+  end
+
+#Scenario Confirmation of my choice
+
+Given(/^I am on the "(.*?)" or "(.*?)" or "(.*?)" page$/) do |rock, paper, scissors|
+   visit ('/rock' || '/paper' || 'scissors')
+end
+
+When(/^I follow the link "(.*?)"$/) do |opponent|
+  click_on('See your opponent\'s choice')
+end
+
+Then(/^I should see a text "(.*?)"$/) do |choice|
+  expect(page).to have_content("Your opponent has chosen")
+end
+
+
+
+
+
+
+
+
+

@@ -11,7 +11,12 @@ Feature: Starting a game
 
   Scenario: Registration process
     Given I am on the register page
-    When I enter my name
+    When I type in my name
     Then I should be successfully registered
+
+  Scenario: Choose a weapon
+    Given I am on the game page
+    When I click on a link
+    Then I should see the text "You have chosen"
 
 

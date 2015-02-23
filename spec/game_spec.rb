@@ -4,16 +4,12 @@ describe Game do
 
   let(:game){Game.new}
   let(:player){double :player}
+  let(:computer){double :computer}
 
-  it 'can know the result if player chooses Paper' do
-    allow(player).to receive(:weapon).and_return('Paper')
-    if game.weapon == 'Rock'
-        game.won
-    elsif game.weapon == 'Scissors'
-        game.lost
-    else
-        game.draw
-    end
+  it 'can know that Paper wins over Rock' do
+    allow(player).to receive(:weapon).and_return('Rock')
+    allow(computer).to receive(:weapon).and_return('Paper')
+    expect(game.result('Rock','Paper')).to eq ('Paper')
   end
 
 
