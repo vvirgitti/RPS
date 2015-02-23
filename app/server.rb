@@ -31,34 +31,22 @@ class RPS < Sinatra::Base
     erb :choose
   end
 
-  get '/rock' do
-    erb :rock
-  end
-
-  get '/paper' do
-    erb :paper
-  end
-
-  get '/scissors' do
-    erb :scissors
-  end
-
-  get '/opponent' do
-    computer = Computer.new
-    @weapon = %w(Rock Paper Scissors).sample
-    erb :opponent
-  end
-
   get '/result' do
-    if erb == :rock
-      @choice = 'Rock'
-    elsif erb == :paper
-      @choice = 'Paper'
-    else
-      @choice = 'Scissors'
-    end
+    computer = Computer.new
     erb :result
   end
+
+  post '/result' do
+    game = Game.new
+    @choice = "You chose: #{params[:choice]}"
+    @weapon = %w(Rock Paper Scissors).sample
+    @opponent = "Your opponent has chosen: #{@weapon}"
+    @outcome = game.result(:choice,:weapon)
+    @results = "The outcome of the fight is #{params[:outcome]} has won"
+    erb :result
+  end
+
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0

@@ -2,11 +2,15 @@
 
 <h1 align='center'><%= @welcome %></h1>
 
-<img src='/images/fight.jpeg' align='middle'>
+<center><img src='/images/fight.jpeg'></center>
 
-  <ul> Please choose your mass destruction weapon
-    <li><a href='/rock'> Rock </a></li>
-    <li><a href='/paper'> Paper </a></li>
-    <li><a href='/scissors'> Scissors </a></li>
-  </ul>
+
+<form action ='/result' method='post' align='center'>
+  Please choose your mass destruction weapon
+  <select name='choice' size='1'>
+    <option> Rock
+    <option> Paper
+    <option> Scissors
+  <input type='submit' id='submit'>
+</form>
 
