@@ -38,25 +38,21 @@
   visit ('/choose')
 end
 
-When(/^I click on a link$/) do
-  click_on('Rock' || 'Paper' || 'Scissors')
+When(/^I select an option and submit$/) do
+  select('submit', :from => 'choice')
 end
 
-Then(/^I should see the text "(.*?)"$/) do |weapon|
-    expect(page).to have_content("You have chosen")
-  end
-
-#Scenario Confirmation of my choice
-
-Given(/^I am on the "(.*?)" or "(.*?)" or "(.*?)" page$/) do |rock, paper, scissors|
-   visit ('/rock' || '/paper' || 'scissors')
+Then(/^I should see the title "(.*?)"$/) do |choice|
+  expect(page).to have_content("You chose")
 end
 
-When(/^I follow the link "(.*?)"$/) do |opponent|
-  click_on('See your opponent\'s choice')
+#Scenario Results
+
+Given(/^I am on the result page$/) do
+  visit ('/result')
 end
 
-Then(/^I should see a text "(.*?)"$/) do |choice|
+Then(/^I should see a mention "(.*?)"$/) do |opponent|
   expect(page).to have_content("Your opponent has chosen")
 end
 

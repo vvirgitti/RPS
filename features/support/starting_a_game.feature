@@ -16,7 +16,11 @@ Feature: Starting a game
 
   Scenario: Choose a weapon
     Given I am on the game page
-    When I click on a link
-    Then I should see the text "You have chosen"
+    When I select an option and submit
+    Then I should see the title "You chose"
+
+  Scenario: Results
+    Given I am on the result page
+    Then I should see a mention "Your opponent has chosen"
 
 
